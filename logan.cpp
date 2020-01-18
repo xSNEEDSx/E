@@ -25,6 +25,25 @@ int main(){
      return 0;
 }
 
+int main(){
+     
+     int userInput = extendedMessage({"You're in a school, sitting in front of a computer ", "and you don't care"},
+               "y: leave, n: stay", "yn");
+     
+     if(userInput == 0)
+          std::cout << "You left " << std::endl;
+
+     if(userInput == 1)
+          std::cout << "You stay " << std::endl;
+
+     
+
+     //std::cout <<userInput << std::endl;
+
+     system("pause");
+     return 0;
+}
+
 int message(std::string message, std::string choicesMessage, std::string choices)
 {
      std::string userInput;
