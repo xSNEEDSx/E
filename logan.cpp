@@ -10,36 +10,52 @@ int main(){
 
      int userInput = extendedMessage({"You're in a school, sitting in front of a computer ", "and you don't care"},
                "y: leave, n: stay", "yn");
+
+     if(userInput == 0)
+          goto Option1;
+        
+     if(userInput == 1)
+          goto Option2;
+          
      
-     if(userInput == 0){
+     Option1: 
           std::cout << "You left " << std::endl;
 
-          userInput = extendedMessage({"EEEE ", "and you don't care"},
-               "y: leave, n: stay", "yn");
-          
+          userInput = extendedMessage({"and you don't care", "EEEEE"}, "y: leave, n: Die", "yn"); 
           if(userInput == 0)
-               std::cout << "You left " << std::endl;
+               goto End;
+          
+          if(userInput == 1)
+               goto YouDied;
+
+     Option2:
+          std::cout << "You stay " << std::endl;
+          userInput = extendedMessage({"you stayed", "for some reason"}, "y: program, n: do something else", "yn");
+          if(userInput == 0)
+               goto Program;
 
           if(userInput == 1)
-               std::cout << "You stay " << std::endl;
-     }
-          
-
-     if(userInput == 1)
-          std::cout << "You stay " << std::endl;
-
-     
-
-     
-
-     
-
+               goto YouDied;
      //std::cout <<userInput << std::endl;
 
-     system("pause");
+     Program:
+          std::cout << "You start to program." << std::endl;
+     return 0;
+
+     YouDied:
+          std::cout << "You Died." << std::endl;
+
+     End:
+          system("pause");
      return 0;
 }
+/*   if(userInput == 1){
+          std::cout << "You stayed " << std::endl;
 
+          userInput = extendedMessage({"and you really regret your choice"},
+               "y: keep programming, n: do something ", "yn");
+
+*/
 
 int message(std::string message, std::string choicesMessage, std::string choices)
 {
