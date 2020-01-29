@@ -19,9 +19,7 @@ int main(){
           
      
      Option1: 
-          std::cout << "You left " << std::endl;
-
-          userInput = extendedMessage({"and you don't care", "EEEEE"}, "y: leave, n: Die", "yn"); 
+          userInput = extendedMessage({"You left and you don't care", "EEEEE"}, "y: Go home, n: Die", "yn"); 
           if(userInput == 0)
                goto End;
           
@@ -29,18 +27,21 @@ int main(){
                goto YouDied;
 
      Option2:
-          std::cout << "You stay " << std::endl;
-          userInput = extendedMessage({"you stayed", "for some reason"}, "y: program, n: do something else", "yn");
+          userInput = extendedMessage({"you stayed for some reason"}, "p: program, r: run, j: jump", "prj");
           if(userInput == 0)
                goto Program;
 
-          if(userInput == 1)
-               goto YouDied;
+          if(userInput > 0)
+               goto Overexertion;
      //std::cout <<userInput << std::endl;
 
      Program:
           std::cout << "You start to program." << std::endl;
-     return 0;
+          goto End;
+
+     Overexertion:
+          std::cout << "You overexerted yourself." << std::endl;
+          goto YouDied;
 
      YouDied:
           std::cout << "You Died." << std::endl;
