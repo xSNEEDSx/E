@@ -9,7 +9,7 @@ int extendedMessage(std::vector<std::string> messages, std::string choicesMessag
 int main(){
 
      int userInput = extendedMessage({"you're in a school, sitting in front of a computer ", "and you don't care"},
-               "y: leave, n: stay", "yn");
+               "l: leave, s: stay", "ls");
 
      if(userInput == 0)
           goto Option1;
@@ -19,7 +19,7 @@ int main(){
           
      
      Option1: 
-          userInput = extendedMessage({"you left and you don't care"}, "y: go home, n: die", "yn"); 
+          userInput = extendedMessage({"you left and you don't care"}, "h: go home, d: die", "hd"); 
           if(userInput == 0)
                goto End;
           
@@ -36,7 +36,7 @@ int main(){
 
           if(userInput == 2)
                goto Talk;
-     //std::cout <<userInput << std::endl;
+     std::cout <<userInput << std::endl;
 
      Program:
           std::cout << "you start to program." << std::endl;
@@ -78,13 +78,20 @@ int main(){
     Jett:
           userInput = extendedMessage({"you go to talk to Jett, so you didn't seem off task, as he is also a programming member"}, "p: talk about programming things, f: talk about Fortnite, l: talk about Lyna, w: talk about the weather", "pflw");
           if(userInput == 0)
-               goto ProgrammingThings
+               goto ProgrammingThings;
           if(userInput == 1)
                goto SilentOrNot;
           if(userInput == 2)
-               goto SilentOrNot;
+               goto SilentOrNotTwo;
           if(userInput == 3)
                goto Sky;
+
+     Social:
+          userInput = extendedMessage({"are you sure?"}, "y: yes, n: no", "yn");
+          if(userInput == 0)
+               goto End;
+          if(userInput == 1)
+               goto Talk;
                
      ProgrammingThings:
           userInput = extendedMessage({"what programming things do you want to talk about?"}, "r: robotics programming, c: that create task for computer science, d: the destroyer device, because that's an option, g: your nice game code", "rcdg");
@@ -96,6 +103,90 @@ int main(){
                goto WeHear;
           if(userInput == 3)
                goto WeHear;
+
+     SilentOrNot:
+          userInput = extendedMessage({"do you want to talk silently or not?"}, "s: silently, n: not silently", "sn");
+          if(userInput == 0)
+               goto Silent;
+          if(userInput == 1)
+               goto WeHear;
+
+     SilentOrNotTwo:
+          userInput = extendedMessage({"do you want to talk silently or not?"}, "s: silently, n: not silently", "sn");
+          if(userInput == 0)
+               goto SilentTwo;
+          if(userInput == 1)
+               goto WeHear;
+
+     Silent:
+          userInput = extendedMessage({"you decide to talk silently, as to not alert the other of being off task"}, "s: talk about the state of the game, p: talk about playing the game later", "sp");
+          if(userInput == 0)
+               goto StateOfGame;
+          if(userInput == 1)
+               goto PlayingGame;
+
+     SilentTwo:
+          userInput = extendedMessage({"you decide to talk silently, as to not alert the other of being off task"}, "i: talk about all the inappropriate jokes you want to make, m: talk about the next time you guys will meet up", "im");
+          if(userInput == 0)
+               goto Redacted;
+          if(userInput == 1)
+               goto NextTime;
+
+     NextTime:
+          userInput = extendedMessage({"Jett: i don't know, have any thoughts?"}, "y: actually i do, n: no. not really", "yn");
+          if(userInput == 0)
+               goto Ideas;
+          if(userInput == 1)
+               goto JettFour;
+
+     Ideas:
+          std::cout << "You: actually, i was thinking we could " << std::endl;
+
+     SilentTwoPartTwo:
+          userInput = extendedMessage({"you decide to talk silently, as to not alert the other of being off task"}, "m: talk about the next time you guys will meet up, n: nevermind", "mn");
+          if(userInput == 0)
+               goto NextTime;
+          if(userInput == 1)
+               goto JettFour;
+
+     Redacted:
+          std::cout << "This isn't going here right now. maybe later" << std::endl;
+               goto SilentTwoPartTwo;
+
+     StateOfGame:
+          userInput = extendedMessage({"what about the state of the game do you want to talk about?"}, "b: how bad it is, r: how you want the old Fortnite back, f: how you think that the game is fine the way it is, n: nevermind", "brfn");
+          if(userInput == 0)
+               goto AgreedTwo;
+          if(userInput == 1)
+               goto OldFortnite;
+          if(userInput == 2)
+               goto MmHm;
+          if(userInput == 3)
+               goto Nevermind;
+
+     PlayingGame:
+          std::cout << "not an option, lol" << std::endl;
+               goto JettThree;
+
+     Nevermind:
+          std::cout << "Jett: ok..." << std::endl;
+               goto Jett;
+
+     AgreedTwo:
+          std::cout << "Jett: yeah, agreed, pretty bad in it's current state to be honest" << std::endl;
+               goto JettThree;
+
+     OldFortnite:
+          std::cout << "You: i want the old Fortnite back, it used to be so fun to play" << std::endl;
+               goto YeahOk;
+
+     MmHm:
+          std::cout << "Jett: Mm, ok" << std::endl;
+               goto JettThree;
+
+     YeahOk:
+          std::cout << "Jett: yeah, ok, i don't care" << std::endl;
+               goto JettThree;
 
      Robo:
           userInput = extendedMessage({"what about the robot program do you want to say to him?"}, "p: the robot isn't working properly, f: i think the robot is working just fine, c: i want to convert this robot to communism", "pfc");
@@ -116,7 +207,21 @@ int main(){
                goto Create;
 
      Create:
-          userInput = extendedMessage({"so, Jett"}, "t: what are your thoughts on this college board create assignment?")
+          userInput = extendedMessage({"so, Jett"}, "t: what are your thoughts on this college board create assignment?, g: i think my game code can be used for this college board assignment, n: nevermind", "tgn");
+          if(userInput == 0)
+               goto DontCare;
+          if(userInput == 1)
+               goto No;
+          if(userInput == 2)
+               goto Nevermind;
+
+     DontCare:
+          std::cout << "Jett: i don't really know..." << std::endl;
+               goto Talk;
+
+     No:
+          std::cout << "Jett: cool, i don't care" << std::endl;
+               goto Talk;
 
      WeHear:
           userInput = extendedMessage({"other: we hear you being off task"}, "r: no, u: no, n: no", "run");
@@ -128,21 +233,95 @@ int main(){
                goto YouDied;
 
      Yell:
-          userInput = extendedMessage({"Jett responds with: well, what do you want me to do about it? i'm not the to go to programmer."}, "f: fix it lol, d: i don't know. sorry", "fd");
+          userInput = extendedMessage({"Jett: well, what do you want me to do about it? i'm not the to go to programmer."}, "f: fix it lol, d: i don't know. sorry", "fd");
           if(userInput == 0)
                goto Anger;
           if(userInput == 1)
                goto Fine;
 
+     DidItMyself:
+          userInput = extendedMessage({"Jett: yeah, i did it myself, thanks"}, "j: jk it's broken, w: you're welcome, f: speaking of fine, you're looking fine as well", "jwf");
+          if(userInput == 0)
+               goto AngerTwo;
+          if(userInput == 1)
+               goto JettTwo;
+          if(userInput == 2)
+               goto Why;
+
+     Agreed:
+          std::cout << "Hunter: agreed. Jett: yes" << std::endl;
+               goto RoboTwo;
+
+     RoboTwo:
+          userInput = extendedMessage({"what about the robot program do you want to say to him now?"}, "p: the robot isn't working properly, f: i think the robot is working just fine", "pf");
+          if(userInput == 0)
+               goto Yell;
+          if(userInput == 1)
+               goto DidItMyself;
+
+     AngerTwo:
+          userInput = extendedMessage({"Jett: oh, fun fact, i didn't write that code"}, "k: yeah i know. lol, r: oh really?, g: got it", "krg");
+          if(userInput == 0)
+               goto OkThen;
+          if(userInput == 1)
+               goto Yep;
+          if(userInput == 2)
+               goto JettTwo;
+
+     Why:
+          userInput = extendedMessage({"Jett: oh, um, thanks?"}, "w: yep. you're welcome, j: you're welcome Jetty", "wj");
+          if(userInput == 0)
+               goto Disappointed;
+          if(userInput == 1)
+               goto DontCallMeThat;
+
+     DontCallMeThat:
+          std::cout << "Jett: don't call me that" << std::endl;
+               goto JettTwo;
+
+     OkThen:
+          userInput = extendedMessage({"Jett: then why'd you tell me that?"}, "w: because why not, a: to make you feel accomplished, i: idk lol", "wai");
+          if(userInput == 0)
+               goto Disappointed;
+          if(userInput == 1)
+               goto Thanks;
+          if(userInput == 2)
+               goto Disappointed;
+
+     Yep:
+          std::cout << "Jett: yep, so don't ask me about it" << std::endl;
+               goto JettTwo;
+
+     Disappointed:
+          std::cout << "Jett: ..." << std::endl;
+               goto JettTwo;
+
+     Thanks:
+          userInput = extendedMessage({"Jett: oh, thanks, but why?"}, "k: because i'm like that. always positive, l: because i like you, r: no reason", "klr");
+          if(userInput == 0)
+               goto ThatNice;
+          if(userInput == 1)
+               goto Oh;
+          if(userInput == 2)
+               goto ThatNice;
+
+     ThatNice:
+          std::cout << "Jett: nice" << std::endl;
+               goto JettTwo;
+
+     Oh:
+          std::cout << "Jett: oh, ok..." << std::endl;
+               goto JettTwo;
+
      Fine:
-          userInput = extendedMessage({"that's fine, i don't want to fix it anyway"}, "g: go somewhere else, s: stay and talk with Jett", "gs");
+          userInput = extendedMessage({"Jett: that's fine, i don't want to fix it anyway"}, "g: go somewhere else, s: stay and talk with Jett", "gs");
           if(userInput == 0)
                goto SomethingElse;
           if(userInput == 1)
                goto JettTwo;
           
      Anger:
-          userInput = extendedMessage({"Jett responds with: no."}, "g: go elsewhere, s: stay to talk about something else", "gs");
+          userInput = extendedMessage({"Jett: no"}, "g: go elsewhere, s: stay to talk about something else", "gs");
           if(userInput == 0)
                goto SomethingElse;
           if(userInput == 1)
@@ -167,13 +346,38 @@ int main(){
                goto Social;
 
      JettTwo:
-          userInput = extendedMessage({"you talk to Jett again"}, "f: talk about Fortnite, l: talk about Lyna, w: talk about the weather", "flw");
+          userInput = extendedMessage({"you talk to Jett again"}, "f: talk about Fortnite, l: talk about Lyna, w: talk about the weather, j: don't talk to Jett", "flwj");
           if(userInput == 0)
                goto SilentOrNot;
+          if(userInput == 1)
+               goto SilentOrNotTwo;
+          if(userInput == 2)
+               goto Sky;
+          if(userInput == 3)
+               goto SomethingElse;
+
+     JettThree:
+          userInput = extendedMessage({"you talk to Jett again"}, "p: talk about programming things, l: talk about Lyna, w: talk about the weather, j: don't talk to Jett", "plwj");
+          if(userInput == 0)
+               goto ProgrammingThings;
+          if(userInput == 1)
+               goto SilentOrNotTwo;
+          if(userInput == 2)
+               goto Sky;
+          if(userInput == 3)
+               goto SomethingElse;
+
+     JettFour:
+          userInput = extendedMessage({"you talk to Jett again"}, "p: talk about programming things, f: talk about Fortnite, w: talk about the weather, j: don't talk to Jett", "plwj");
+          if(userInput == 0)
+               goto ProgrammingThings;
           if(userInput == 1)
                goto SilentOrNot;
           if(userInput == 2)
                goto Sky;
+          if(userInput == 3)
+               goto SomethingElse;
+
 }
 /*   if(userInput == 1){
           std::cout << "You stayed " << std::endl;
