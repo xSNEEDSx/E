@@ -40,11 +40,11 @@ int main(){
 
      Program:
           std::cout << "you start to program." << std::endl;
-          goto End;
+               goto End;
 
      Overexertion:
           std::cout << "you overexerted yourself." << std::endl;
-          goto YouDied;
+               goto YouDied;
 
      YouDied:
           std::cout << "you died." << std::endl;
@@ -140,8 +140,34 @@ int main(){
                goto JettFour;
 
      Ideas:
-          std::cout << "You: actually, i was thinking we could " << std::endl;
+          userInput = extendedMessage({"You: actually, i was thinking we could..."}, "s: go ice skating, m: watch a movie, h: just hang out", "smh");
+          if(userInput == 0)
+               goto IceSkatingTime;
+          if(userInput == 1)
+               goto MovieTime;
+          if(userInput == 2)
+               goto HangOutTime;
 
+     IceSkatingTime:
+          userInput = extendedMessage({"Jett: yeah, i guess, would have to check with Lyna on that as well, but what time would you want to do that?"}, "w: maybe next week?, m: maybe next month?, i: i don't know... i can never decide", "wmi");
+          if(userInput == 0)
+               goto Maybe;
+          if(userInput == 1)
+               goto Probably;
+          if(userInput == 2)
+               goto MakesSense;
+
+     Maybe:
+          userInput = extendedMessage({""})
+          if(userInput == 0)
+               goto Ok;
+          if(userInput == 1)
+               goto 
+
+     Ok:
+          std::cout << "You: ok"
+               goto 
+     
      SilentTwoPartTwo:
           userInput = extendedMessage({"you decide to talk silently, as to not alert the other of being off task"}, "m: talk about the next time you guys will meet up, n: nevermind", "mn");
           if(userInput == 0)
